@@ -29,11 +29,11 @@ public class Restaurante {
     private Long id;
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    @OneToMany(mappedBy = "mesa")
+    @OneToMany(mappedBy = "restaurante")
     private List<Mesa> mesas;
     
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    @OneToMany(mappedBy = "reserva")
+    @OneToMany(mappedBy = "restaurante")
     private List<Reserva> reservas;
     
     @NotBlank

@@ -26,6 +26,7 @@ import javax.validation.constraints.NotBlank;
 public class Mesa {
     
     @Id
+    @Column(name = "id_mesa")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
@@ -44,7 +45,7 @@ public class Mesa {
     private Restaurante restaurante;
     
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    @OneToMany(mappedBy = "reserva")
+    @OneToMany(mappedBy = "mesa")
     private List<Reserva> reservas;
     
     public Long getId() {

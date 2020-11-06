@@ -32,7 +32,7 @@ public class Usuario {
     private Long id;
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    @OneToMany(mappedBy = "reserva")
+    @OneToMany(mappedBy = "usuario")
     private List<Reserva> reservas;
 
     @NotBlank
