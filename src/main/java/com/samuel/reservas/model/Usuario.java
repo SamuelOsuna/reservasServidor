@@ -2,6 +2,7 @@ package com.samuel.reservas.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
+import java.util.List;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -21,29 +22,34 @@ import org.hibernate.annotations.OnDeleteAction;
  *
  * @author Samuel Osuna Alcaide
  */
-
 @Entity
 @Table(name = "usuario")
 public class Usuario {
+
     @Id
+    @Column(name = "id_usuario")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
+
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @OneToMany(mappedBy = "reserva")
+    private List<Reserva> reservas;
+
     @NotBlank
     @Column(name = "nombre", length = 150)
     private String nombre;
-    
+
     @NotBlank
     @Column(name = "email", length = 150)
     private String email;
-    
+
     @NotBlank
     @Column(name = "contrasena", length = 150)
     private String contrasena;
-    
+
     @Column(name = "restaurante", length = 150)
     private boolean restaurante;
-    
+
     @Column(name = "imagen", length = 150)
     private String imagen;
 
@@ -95,10 +101,17 @@ public class Usuario {
         this.imagen = imagen;
     }
 
+    public List<Reserva> getReservas() {
+        return reservas;
+    }
+
+    public void setReservas(List<Reserva> reservas) {
+        this.reservas = reservas;
+    }
+
     @Override
     public String toString() {
-        return "Usuario{" + "id=" + id + ", nombre=" + nombre + ", email=" + email + ", contrasena=" + contrasena + ", restaurante=" + restaurante + ", imagen=" + imagen + '}';
+        return "Usuario{" + "id=" + id + ", reservas=" + reservas + ", nombre=" + nombre + ", email=" + email + ", contrasena=" + contrasena + ", restaurante=" + restaurante + ", imagen=" + imagen + '}';
     }
-    
-    
+
 }

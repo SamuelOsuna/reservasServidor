@@ -29,8 +29,12 @@ public class Restaurante {
     private Long id;
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    @OneToMany(mappedBy = "restaurante")
+    @OneToMany(mappedBy = "mesa")
     private List<Mesa> mesas;
+    
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @OneToMany(mappedBy = "reserva")
+    private List<Reserva> reservas;
     
     @NotBlank
     @Column(name = "nombre", length = 150)
@@ -93,11 +97,18 @@ public class Restaurante {
         this.imagen = imagen;
     }
 
-    @Override
-    public String toString() {
-        return "Restaurante{" + "id=" + id + ", mesas=" + mesas + ", nombre=" + nombre + ", direccion=" + direccion + ", telefono=" + telefono + ", imagen=" + imagen + '}';
+    public List<Reserva> getReservas() {
+        return reservas;
     }
 
-    
+    public void setReservas(List<Reserva> reservas) {
+        this.reservas = reservas;
+    }
 
+    @Override
+    public String toString() {
+        return "Restaurante{" + "id=" + id + ", mesas=" + mesas + ", reservas=" + reservas + ", nombre=" + nombre + ", direccion=" + direccion + ", telefono=" + telefono + ", imagen=" + imagen + '}';
+    }
+    
+    
 }

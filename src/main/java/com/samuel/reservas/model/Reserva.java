@@ -1,5 +1,6 @@
 package com.samuel.reservas.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -11,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.MapsId;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -30,10 +32,22 @@ public class Reserva {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @ManyToOne
+    @MapsId("id_usuario")
+    @JoinColumn(name = "id_usuario")
     private Usuario usuario;
     
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @ManyToOne
+    @MapsId("id_mesa")
+    @JoinColumn(name = "id_mesa")
     private Mesa mesa;
     
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @ManyToOne
+    @MapsId("id_restaurante")
+    @JoinColumn(name = "id_restaurante")
     private Restaurante restaurante;
     
     private String nombre;

@@ -42,7 +42,11 @@ public class Mesa {
     @MapsId("id_restaurante")
     @JoinColumn(name = "id_restaurante")
     private Restaurante restaurante;
-
+    
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @OneToMany(mappedBy = "reserva")
+    private List<Reserva> reservas;
+    
     public Long getId() {
         return id;
     }
@@ -75,11 +79,17 @@ public class Mesa {
         this.restaurante = restaurante;
     }
 
-    @Override
-    public String toString() {
-        return "Mesa{" + "id=" + id + ", comensales=" + comensales + ", imagen=" + imagen + ", restaurante=" + restaurante + '}';
+    public List<Reserva> getReservas() {
+        return reservas;
     }
 
-    
+    public void setReservas(List<Reserva> reservas) {
+        this.reservas = reservas;
+    }
+
+    @Override
+    public String toString() {
+        return "Mesa{" + "id=" + id + ", comensales=" + comensales + ", imagen=" + imagen + ", restaurante=" + restaurante + ", reservas=" + reservas + '}';
+    }
     
 }
