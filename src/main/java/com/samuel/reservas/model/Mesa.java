@@ -30,8 +30,13 @@ public class Mesa {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
+    
     @NotBlank
-    @Column(name = "comensales", length = 150)
+    @Column(name = "nmesa")
+    private int nmesa;
+    
+    @NotBlank
+    @Column(name = "comensales")
     private int comensales;
     
     @NotBlank
@@ -88,9 +93,17 @@ public class Mesa {
         this.reservas = reservas;
     }
 
+    public int getNmesa() {
+        return nmesa;
+    }
+
+    public void setNmesa(int nmesa) {
+        this.nmesa = nmesa;
+    }
+
     @Override
     public String toString() {
-        return "Mesa{" + "id=" + id + ", comensales=" + comensales + ", imagen=" + imagen + ", restaurante=" + restaurante + ", reservas=" + reservas + '}';
+        return "Mesa{" + "id=" + id + ", nmesa=" + nmesa + ", comensales=" + comensales + ", imagen=" + imagen + ", restaurante=" + restaurante + ", reservas=" + reservas + '}';
     }
     
 }

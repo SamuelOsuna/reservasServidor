@@ -52,6 +52,7 @@ public class MesaService {
                 Mesa newEntity = mesa.get();
                 newEntity.setComensales(entity.getComensales());
                 newEntity.setImagen(entity.getImagen());
+                newEntity.setNmesa(entity.getNmesa());
                 
                 newEntity = repository.save(newEntity);
                 

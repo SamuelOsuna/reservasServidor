@@ -1,6 +1,10 @@
 package com.samuel.reservas.model;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -23,45 +27,54 @@ import javax.validation.constraints.NotBlank;
  *
  * @author Samuel Osuna Alcaide
  */
-
 @Entity
 @Table(name = "reserva")
 public class Reserva {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+
+    //@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+    @JsonIdentityReference(alwaysAsId = true)
     @ManyToOne
     @MapsId("id_usuario")
     @JoinColumn(name = "id_usuario")
     private Usuario usuario;
-    
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+
+    //@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "nmesa")
+    @JsonIdentityReference(alwaysAsId = true)
     @ManyToOne
     @MapsId("id_mesa")
     @JoinColumn(name = "id_mesa")
     private Mesa mesa;
-    
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+
+    //@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+    @JsonIdentityReference(alwaysAsId = true)
     @ManyToOne
     @MapsId("id_restaurante")
     @JoinColumn(name = "id_restaurante")
     private Restaurante restaurante;
-    
+
+    @Column(name = "nombre")
     private String nombre;
-    
+
+    @Column(name = "fecha")
     private String fecha;
-    
+
     @Temporal(TemporalType.TIMESTAMP)
+    @JsonIgnore
     private Date fechacreacion;
-    
-    private String hora;
-    
+
+    @Column(name = "tipo")
     private String tipo;
-    
-    private boolean aceptada;
+
+    @Column(name = "aceptada", nullable = true)
+    @JsonIgnore
+    private Boolean aceptada;
 
     public Long getId() {
         return id;
@@ -119,14 +132,6 @@ public class Reserva {
         this.fechacreacion = fechacreacion;
     }
 
-    public String getHora() {
-        return hora;
-    }
-
-    public void setHora(String hora) {
-        this.hora = hora;
-    }
-
     public String getTipo() {
         return tipo;
     }
@@ -145,9 +150,7 @@ public class Reserva {
 
     @Override
     public String toString() {
-        return "Reserva{" + "id=" + id + ", usuario=" + usuario + ", mesa=" + mesa + ", restaurante=" + restaurante + ", nombre=" + nombre + ", fecha=" + fecha + ", fechacreacion=" + fechacreacion + ", hora=" + hora + ", tipo=" + tipo + ", aceptada=" + aceptada + '}';
+        return "Reserva{" + "id=" + id + ", usuario=" + usuario + ", mesa=" + mesa + ", restaurante=" + restaurante + ", nombre=" + nombre + ", fecha=" + fecha + ", fechacreacion=" + fechacreacion + ", tipo=" + tipo + ", aceptada=" + aceptada + '}';
     }
-    
-    
-    
+
 }

@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,6 +30,7 @@ public class RestauranteServiceController {
     @Autowired
     RestauranteService service;
     
+    @CrossOrigin(origins = "http://localhost:8100")
     @GetMapping
     public ResponseEntity<List<Restaurante>> getAllRestaurantes(){
         List<Restaurante> list = service.getAllRestaurantes();
@@ -36,6 +38,7 @@ public class RestauranteServiceController {
         return new ResponseEntity<List<Restaurante>>(list, new HttpHeaders(), HttpStatus.OK);
     }
     
+    @CrossOrigin(origins = "http://localhost:8100")
     @GetMapping("/{id}")
     public ResponseEntity<Restaurante> getRestauranteById(@PathVariable("id") Long id) throws RecordNotFoundException{
         Restaurante entity = service.getRestauranteById(id);

@@ -52,7 +52,6 @@ public class ReservaService {
                 Reserva newEntity = reserva.get();
                 newEntity.setFecha(entity.getFecha());
                 newEntity.setAceptada(entity.isAceptada());
-                newEntity.setHora(entity.getHora());
                 newEntity.setTipo(entity.getTipo());
                 newEntity.setMesa(entity.getMesa());
                 
