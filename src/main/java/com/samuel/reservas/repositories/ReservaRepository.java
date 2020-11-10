@@ -12,10 +12,6 @@ import org.springframework.stereotype.Repository;
  */
 
 @Repository
-public interface SubredditRepository extends JpaRepository<Reserva, Long>{
-
-    @Query(
-    value="SELECT subreddit.id,subreddit.name,subreddit,description FROM subreddit WHERE subreddit.name LIKE %?1%", nativeQuery = true)
-    public List<Reserva> getByName(String name);
+public interface ReservaRepository extends JpaRepository<Reserva, Long>{
     
 }

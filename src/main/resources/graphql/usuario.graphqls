@@ -1,0 +1,24 @@
+type Usuario {
+  id: ID!
+  reservas: [Reserva]
+  nombre: String
+  email: String
+  contrasena: String
+  restaurante: boolean
+  imagen: String
+}
+
+# Root
+type Query {
+  findAllUsuarios: [Usuario]!
+  findUsuariosByNombre(nombre:String):[Usuario]!
+  findUsuarioByIs(id: ID!):Usuario!
+  countUsuarios: Long!
+}
+
+# Root
+type Mutation {
+  createUsuario(nombre: String!, email: String!, contrasena: String!, imagen:String): Usuario!
+  deleteUsuario(id:ID!): boolean
+  updateUsuario(id:ID!, nombre: String, email: String, contrasena:String, imagen:String): Usuario!
+}

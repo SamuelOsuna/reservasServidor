@@ -2,12 +2,12 @@ package com.samuel.reservas.services;
 
 import com.samuel.reservas.exceptions.RecordNotFoundException;
 import com.samuel.reservas.model.Reserva;
-import com.samuel.reservas.repositories.SubredditRepository;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import com.samuel.reservas.repositories.ReservaRepository;
 
 /**
  *
@@ -17,7 +17,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class ReservaService {
     @Autowired
-    SubredditRepository repository;
+    ReservaRepository repository;
     
     public List<Reserva> getAllReservas(){
         List<Reserva> reservaList = repository.findAll();
@@ -73,16 +73,6 @@ public class ReservaService {
             repository.deleteById(id);
         }else{
             throw new RecordNotFoundException("No existe ninguna reserva con el id proporcionado", id);
-        }
-    }
-
-    public List<Reserva> getReservaByName(String name) {
-        List<Reserva> reservaList = repository.getByName(name);
-        
-        if(reservaList.size() > 0){
-            return reservaList;
-        }else{
-            return new ArrayList<Reserva>();
         }
     }
 }

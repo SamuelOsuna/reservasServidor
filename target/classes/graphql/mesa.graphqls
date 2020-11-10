@@ -1,0 +1,19 @@
+type Mesa {
+  id: ID!
+  nmesa: Integer
+  comensales: Integer
+  imagen: String
+  restaurante: Restaurante
+}
+
+# Root
+type Query {
+  findAllMesasByRestaurante(id_restaurante: ID!): [Mesa]!
+}
+
+# Root
+type Mutation {
+  createMesa(id_restaurante: ID!, nmesa:Integer!, comensales: Integer!, imagen: String): Mesa!
+  deleteMesa(id_mesa: ID!): boolean
+  updateMesa(id_mesa: ID!, nmesa:Integer, comensales: Integer, imagen: String): Mesa!
+}

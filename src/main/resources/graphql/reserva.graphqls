@@ -1,0 +1,23 @@
+type Reserva {
+  id: ID!
+  mesa: Mesa
+  restaurante: Restaurante
+  nombre: String
+  fecha: String
+  fechacreacion: String
+  tipo: String
+  aceptada: boolean
+}
+
+# Root
+type Query {
+  findReservasByRestaurante(id_restaurante: ID!): [Reserva]!
+  findReservasByUsuario(id_usuario: ID!): [Reserva]!
+}
+
+# Root
+type Mutation {
+  createReserva(id_usuario: ID!, id_restaurante: ID!, id_mesa: ID!, fecha:String, tipo: String): Reserva!
+  deleteReserva(id_reserva: ID!): boolean
+  updateReserva(fecha:String, tipo: String): Reserva!
+}

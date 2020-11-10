@@ -1,0 +1,20 @@
+type Restaurante {
+  id: ID!
+  mesas: [Mesa]
+  reseras: [Reserva]
+  nombre: String
+  direccion: String
+  telefono: String
+  imagen: String
+}
+
+# Root
+type Query {
+  findAllRestaurantes: [Restaurante]!
+  findRestauranteById(id:ID!):Restaurante!
+}
+
+# Root
+type Mutation {
+  
+}
